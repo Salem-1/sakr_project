@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <style media="screen">
+      .head{
+        
+        border: 3px solid black;
+        padding: 5px;
+        margin: 2px;
+      }
+    </style>
+    <meta charset="utf-8">
+    <title>News dry run</title>
+  </head>
+  <body>
+      <h1>top drones news</h1>
+
+      {% for head in headings %}
+            <div class= "head">
+            <h3>{{head}}</h3>
+            </div>
+            {%endfor%}
+  </body>
+</html>
