@@ -8,6 +8,14 @@ import datetime # to make the datetime stamp and
 import time
 
 from django.http import JsonResponse
+#make time algorithm to update news weekly
+#save all the news in the database
+#Make your API from the database not the online request
+#for the sake of the effeciency ,(Ya genius)
+#save each link wih it's site as separate column in the database
+#any one who want to save a link, will just add the article id to his user table
+#then make the site aesthetics
+#submit and celebrate`
 
 #   datetime.datetime.now()
 
@@ -37,10 +45,17 @@ def agregator(url, element):
     for heading in headings:
         head = str(heading)
         out.append(head)#storing the news piece as it's as string to keep the same HTML format
-        db_news=Articles(url=head, title=str(heading.text), datetime=datetime.datetime.now()) # storing each piece of article in the database
-        #tommorow inshall make if db_news not in my_db:
-        #save it else skip
-        db_news.save()
+        #storing only unique articles in the database
+
+    #    if  str(Articles.objects.filter(title=f"{heading.text}")[:1]) == str(heading.text):
+    #        print("not")
+    #        continue
+    #    else:
+    #        print("saved")
+    #        db_news=Articles(url=head, title=str(heading.text), datetime=datetime.datetime.now()) # storing each piece of article in the databas
+    #        db_news.save()
+    for i in out:
+        print(i)
     return out
     #returning output as list
 
@@ -54,7 +69,7 @@ def posts(request):
     time.sleep(1)  # delay the speed not to surprise the user
     # Return list of posts
     return JsonResponse({
-        "posts":  agregator("https://dronelife.com/drone-delivery/","h3") #special function to convert the data list to an API
+        "posts":  agregator("https://dronelife.com/drone-delivery/","h3")#agregator("https://dronelife.com/drone-delivery/","h3") #special function to convert the data list to an API
     })
 
 
